@@ -1,2 +1,6 @@
 #!/usr/bin/env bash
-php-fpm8.2 && nginx -g 'daemon off;'
+set -e
+
+php-fpm8.2 &
+
+exec nginx -g 'daemon off;'
