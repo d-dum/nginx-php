@@ -1,7 +1,8 @@
 FROM nginx:stable-bookworm
 
 RUN apt update && apt upgrade -y 
-RUN apt install -y php8.2 php8.2-fpm && mkdir /app && usermod -aG www-data nginx
+RUN apt install -y php8.2 php8.2-fpm && mkdir /app && usermod -aG www-data nginx && \
+    apt clean -y && apt autoremove --purge -y
 
 COPY ./nginx-config.conf /etc/nginx/nginx.conf
 COPY ./start_server.sh /app/start_server
